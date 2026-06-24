@@ -1,4 +1,4 @@
-resource "lab" "siva_task3_lab" {
+resource "lab" "siva_task3_vm" {
   title       = "Build a Todo App with Git"
   description = "Learn Git by building and versioning a real working Todo application."
   layout      = resource.layout.two_column
@@ -37,3 +37,4 @@ resource "lab" "siva_task3_lab" {
     }
   }
 }
+
