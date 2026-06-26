@@ -1,2 +1,2 @@
 #!/bin/bash
-cd /root/todoapp && git branch --show-current 2>/dev/null | grep -q 'feature'
+ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i /root/.ssh/vm_key root@workstation.vm.sandbox.internal "cd /root/todoapp && git branch --show-current 2>/dev/null | grep -q 'feature'" 2>/dev/null

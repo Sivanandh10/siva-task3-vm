@@ -69,6 +69,21 @@ class Handler(http.server.BaseHTTPRequestHandler):
 http.server.HTTPServer(("0.0.0.0", 8080), Handler).serve_forever()
 PYEOF
     nohup python3 /root/gitlog.py > /var/log/gitlog.log 2>&1 &
+
+    # Enable SSH for check scripts
+    apt-get install -y -qq openssh-server
+    mkdir -p /root/.ssh
+    ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa 2>/dev/null
+    cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+    chmod 700 /root/.ssh
+    chmod 600 /root/.ssh/authorized_keys
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+    echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+    systemctl enable ssh
+    systemctl start ssh
+    # Write private key to shared location for checker
+    cp /root/.ssh/id_rsa /tmp/vm_key
+    chmod 644 /tmp/vm_key
     exit 0
   EOF
 }

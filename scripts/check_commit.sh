@@ -1,2 +1,2 @@
 #!/bin/bash
-cd /root/todoapp && git log --oneline 2>/dev/null | grep -qi 'initial commit'
+ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i /root/.ssh/vm_key root@workstation.vm.sandbox.internal "cd /root/todoapp && git log --oneline 2>/dev/null | grep -qi 'initial commit'" 2>/dev/null
