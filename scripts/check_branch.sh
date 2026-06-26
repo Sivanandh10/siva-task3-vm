@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -sf http://workstation.vm.sandbox.internal:9090/branch > /dev/null 2>&1
+cd /root/todoapp && git branch 2>/dev/null | grep -q 'feature'

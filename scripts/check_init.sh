@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -sf http://workstation.vm.sandbox.internal:9090/init > /dev/null 2>&1
+test -d /root/todoapp/.git

@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -sf http://workstation.vm.sandbox.internal:9090/commit > /dev/null 2>&1
+cd /root/todoapp && git log --oneline 2>/dev/null | grep -qi 'initial commit'

@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -sf http://workstation.vm.sandbox.internal:9090/merged > /dev/null 2>&1
+cd /root/todoapp && git log main --oneline 2>/dev/null | wc -l | xargs -I{} test {} -ge 2

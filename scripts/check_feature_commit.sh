@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -sf http://workstation.vm.sandbox.internal:9090/feature_commit > /dev/null 2>&1
+cd /root/todoapp && [ $(git log feature --oneline 2>/dev/null | wc -l) -ge 2 ]
