@@ -1,29 +1,29 @@
 ﻿# Merging
 
-> The feature is ready. Merge it into main so the production version gets the update.
+The feature is ready. Merge it into main.
 
 ---
 
 ## Step 1 - Switch back to main
 
-    git checkout main
+```bash,run
+git checkout main
+```
 
-Open the **Live App** tab — it shows "Coming soon..." again. Main hasn't been updated yet.
+Check the **Live App** tab - it reverts to "Coming soon..." because main is not updated yet.
 
 ---
 
 ## Step 2 - Merge feature into main
 
-    git merge feature
+```bash,run
+git merge feature
+```
 
-Open the **Live App** tab — the full working todo app is now live on main!
+Check the **Live App** tab - the full todo app is now live on main!
 
-Verify:
-
-    git log --oneline
-
-Check **Git History** — you can see both commits on main now.
-
-Click **Check**.
+```bash,run
+git log --oneline
+```
 
 <instruqt-task id="merging"></instruqt-task>
