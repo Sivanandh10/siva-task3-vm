@@ -1,2 +1,2 @@
 #!/bin/bash
-sshpass -p 'instruqt123' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 root@workstation.vm.sandbox.internal "cd /root/todoapp && git branch --show-current 2>/dev/null | grep -q 'feature'" 2>/dev/null
+curl -sf http://workstation.vm.sandbox.internal:9090/switched > /dev/null 2>&1

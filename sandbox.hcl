@@ -22,6 +22,9 @@ resource "vm" "workstation" {
   port {
     local = 8080
   }
+  port {
+    local = 9090
+  }
   startup_script = <<-EOF
     #!/bin/bash
     export DEBIAN_FRONTEND=noninteractive
@@ -68,7 +71,48 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.send_response(200); self.send_header("Content-type","text/html"); self.end_headers(); self.wfile.write(page.encode())
 http.server.HTTPServer(("0.0.0.0", 8080), Handler).serve_forever()
 PYEOF
-    nohup python3 /root/gitlog.py > /var/log/gitlog.log 2>&1 &
+    cat > /root/checkapi.py << '"'"'APIEOF'"'"'
+import http.server, subprocess, os, json
+
+class Handler(http.server.BaseHTTPRequestHandler):
+    def log_message(self, *a): pass
+    def do_GET(self):
+        check = self.path.strip("/")
+        os.chdir("/root/todoapp")
+        result = False
+        try:
+            if check == "init":
+                result = os.path.isdir("/root/todoapp/.git")
+            elif check == "commit":
+                out = subprocess.check_output(["git","log","--oneline"],stderr=subprocess.DEVNULL).decode()
+                result = "initial commit" in out.lower()
+            elif check == "branch":
+                out = subprocess.check_output(["git","branch"],stderr=subprocess.DEVNULL).decode()
+                result = "feature" in out
+            elif check == "switched":
+                out = subprocess.check_output(["git","branch","--show-current"],stderr=subprocess.DEVNULL).decode()
+                result = "feature" in out
+            elif check == "feature_commit":
+                out = subprocess.check_output(["git","log","feature","--oneline"],stderr=subprocess.DEVNULL).decode()
+                result = len(out.strip().splitlines()) >= 2
+            elif check == "merged":
+                out = subprocess.check_output(["git","log","main","--oneline"],stderr=subprocess.DEVNULL).decode()
+                result = len(out.strip().splitlines()) >= 2
+            elif check == "conflict":
+                out = subprocess.check_output(["git","log","--oneline"],stderr=subprocess.DEVNULL).decode()
+                result = "resolv" in out.lower()
+        except: pass
+        code = 200 if result else 400
+        self.send_response(code)
+        self.send_header("Content-type","application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps({"result": result}).encode())
+
+http.server.HTTPServer(("0.0.0.0", 9090), Handler).serve_forever()
+APIEOF
+
+nohup python3 /root/checkapi.py > /var/log/checkapi.log 2>&1 &
+nohup python3 /root/gitlog.py > /var/log/gitlog.log 2>&1 &
 
     # Enable SSH for check scripts
     apt-get install -y -qq openssh-server
