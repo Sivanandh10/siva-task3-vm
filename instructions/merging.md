@@ -1,4 +1,4 @@
-# Merging
+﻿# Merging
 
 > The feature is ready. Merge it into main so the production version gets the update.
 

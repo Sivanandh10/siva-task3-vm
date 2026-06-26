@@ -1,4 +1,4 @@
-# Docker Networking
+﻿# Docker Networking
 
 > By default containers are isolated. Docker networks let containers talk to each other by name.
 

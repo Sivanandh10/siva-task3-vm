@@ -1,4 +1,4 @@
-# Docker Volumes
+﻿# Docker Volumes
 
 > Containers are ephemeral — when they stop, their data is gone. Volumes solve this by persisting data outside the container lifecycle.
 

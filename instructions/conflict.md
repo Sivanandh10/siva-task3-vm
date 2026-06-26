@@ -1,4 +1,4 @@
-# Style and Resolve
+﻿# Style and Resolve
 
 > Two developers added different styles at the same time. Now there is a conflict. You need to resolve it.
 

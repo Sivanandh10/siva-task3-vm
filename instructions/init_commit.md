@@ -1,4 +1,4 @@
-# Init and Commit
+﻿# Init and Commit
 
 > Every project starts with `git init`. Let's create the app skeleton and see it live.
 

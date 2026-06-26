@@ -1,4 +1,4 @@
-# Inspect Containers
+﻿# Inspect Containers
 
 > Docker inspect gives you full details about any container — IP address, mounts, environment variables, network settings.
 

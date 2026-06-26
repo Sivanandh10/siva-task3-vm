@@ -1,4 +1,4 @@
-# Instructions
+﻿# Instructions
 
 The `instructions` directory holds all the written content of your lab. 
 We have separated the instructions into chapter directories, which contain each 
