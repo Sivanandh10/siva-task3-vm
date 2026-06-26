@@ -80,7 +80,9 @@ PYEOF
     echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
     echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
     systemctl enable ssh
-    systemctl start ssh
+    echo "root:instruqt123" | chpasswd
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+    systemctl restart ssh
     # Write private key to shared location for checker
     cp /root/.ssh/id_rsa /tmp/vm_key
     chmod 644 /tmp/vm_key

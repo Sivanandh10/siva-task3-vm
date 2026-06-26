@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i /root/.ssh/vm_key root@workstation.vm.sandbox.internal "cd /root/todoapp && [ \$(git log feature --oneline 2>/dev/null | wc -l) -ge 2 ]" 2>/dev/null
+sshpass -p 'instruqt123' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 root@workstation.vm.sandbox.internal "cd /root/todoapp && [ \$(git log feature --oneline 2>/dev/null | wc -l) -ge 2 ]" 2>/dev/null
