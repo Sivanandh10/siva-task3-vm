@@ -1,7 +1,7 @@
 resource "lab" "siva_task3_vm" {
   title       = "Build a Todo App with Git"
   description = "Learn Git by building and versioning a real working Todo application."
-  layout      = resource.layout.two_column
+  layout      = resource.layout.welcome
 
   settings {
     timelimit {
@@ -16,12 +16,15 @@ resource "lab" "siva_task3_vm" {
 
       page "overview" {
         reference = resource.page.overview
+        layout    = resource.layout.welcome
       }
       page "init_commit" {
         reference = resource.page.init_commit
+        layout    = resource.layout.init_commit
       }
       page "branching" {
         reference = resource.page.branching
+        layout    = resource.layout.branching
       }
     }
 
@@ -30,11 +33,12 @@ resource "lab" "siva_task3_vm" {
 
       page "merging" {
         reference = resource.page.merging
+        layout    = resource.layout.merging
       }
       page "conflict" {
         reference = resource.page.conflict
+        layout    = resource.layout.conflict
       }
     }
   }
 }
-
